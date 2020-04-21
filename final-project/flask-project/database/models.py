@@ -13,10 +13,8 @@ class User(db.Document):
     # genres = db.ListField(db.StringField(), required=True)
 
 class Task(db.Document):
-    created = db.DateTimeField(default=datetime.datetime.utcnow)
     title = db.StringField(max_length=120, required=True)
-    description = db.StringField(max_length=255)
-    due_date = db.DateTimeField(default=datetime.datetime.utcnow)
-    notification = db.DateTimeField(default=datetime.datetime.utcnow)
-    status = db.StringField(default='undone')
+    deadline_date = db.DateTimeField()
+    notification_date = db.DateTimeField(default=datetime.datetime.utcnow)
+    status = db.BooleanField()
     user_id = db.IntField(required=True)

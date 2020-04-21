@@ -8,6 +8,7 @@ class TasksApi(Resource):
         return Response(tasks, mimetype="application/json", status=200)
 
     def post(self):
+        print(request)
         body = request.get_json()
         task =  Task(**body).save()
         id = task.id

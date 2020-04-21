@@ -24,5 +24,8 @@ class UserApi(Resource):
         return '', 200
 
     def get(self, id):
-        user = User.objects.get(user_id=id).to_json()
+        try:
+            user = User.objects.get(user_id=id).to_json()
+        except User.DoesNotExist as e:
+            return Response(user, mimetype="application/json", status=500)
         return Response(user, mimetype="application/json", status=200)
